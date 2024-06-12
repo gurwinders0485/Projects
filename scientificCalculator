@@ -1,0 +1,101 @@
+import java.util.Scanner;
+
+public class Calculator {
+    public static void main(String[] args) {
+        Scanner scnr = new Scanner(System.in);
+        String type;
+        String Operator = "";
+        boolean restart = true;
+
+        while (restart) {
+            int n;
+            double r;
+            double radians;
+            double result = 0;
+
+            System.out.println("Enter the calculator mode: Standard/Scientific?");
+            type = scnr.next();
+
+            if (type.equalsIgnoreCase("Standard")) {
+                System.out.println("The calculator will operate in standard mode.");
+                System.out.println("Enter '+' for addition, '-' for subtraction, '*' for multiplication, '/' for division");
+                Operator = scnr.next();
+            } else if (type.equalsIgnoreCase("Scientific")) {
+                System.out.println("The calculator will operate in scientific mode.");
+                System.out.println("Enter '+' for addition, '-' for subtraction, '*' for multiplication, '/' for division, 'sin' for sin x, 'cos' for cos x, 'tan' for tan x:");
+                Operator = scnr.next();
+            } else {
+                System.out.println("Invalid calculator mode. Please try again.");
+                continue;
+            }
+
+            while (!Operator.equals("+") && !Operator.equals("-") && !Operator.equals("*") && !Operator.equals("/") && !Operator.equals("sin") && !Operator.equals("cos") && !Operator.equals("tan")) {
+                System.out.println("Invalid operator " + Operator);
+                if (type.equalsIgnoreCase("Standard")) {
+                    System.out.println("Enter '+' for addition, '-' for subtraction, '*' for multiplication, '/' for division");
+                } else {
+                    System.out.println("Enter '+' for addition, '-' for subtraction, '*' for multiplication, '/' for division, 'sin' for sin x, 'cos' for cos x, 'tan' for tan x:");
+                }
+                Operator = scnr.next();
+            }
+
+            if (Operator.equals("+")) {
+                System.out.println("Enter two numbers to add");
+                r = scnr.nextDouble();
+                n = scnr.nextInt();
+                result = r + n;
+                System.out.println("Result: " + result);
+            } else if (Operator.equals("-")) {
+                System.out.println("Enter two numbers to subtract");
+                r = scnr.nextDouble();
+                n = scnr.nextInt();
+                result = r - n;
+                System.out.println("Result: " + result);
+            } else if (Operator.equals("*")) {
+                System.out.println("Enter two numbers to multiply");
+                r = scnr.nextDouble();
+                n = scnr.nextInt();
+                result = r * n;
+                System.out.println("Result: " + result);
+            } else if (Operator.equals("/")) {
+                System.out.println("Enter two numbers to divide");
+                r = scnr.nextDouble();
+                n = scnr.nextInt();
+                if (n != 0) {
+                    result = r / n;
+                    System.out.println("Result: " + result);
+                } else {
+                    System.out.println("Error: Division by zero is not allowed.");
+                }
+            } else if (Operator.equals("sin")) {
+                System.out.println("Enter a number in radians to find the sine");
+                radians = scnr.nextDouble();
+                result = Math.sin(radians);
+                System.out.println("Result: " + result);
+            } else if (Operator.equals("cos")) {
+                System.out.println("Enter a number in radians to find the cosine");
+                radians = scnr.nextDouble();
+                result = Math.cos(radians);
+                System.out.println("Result: " + result);
+            } else if (Operator.equals("tan")) {
+                System.out.println("Enter a number in radians to find the tangent");
+                radians = scnr.nextDouble();
+                result = Math.tan(radians);
+                System.out.println("Result: " + result);
+            }
+
+            System.out.println("Do you want to start over? (Y/N)");
+            type = scnr.next();
+
+            if (type.equalsIgnoreCase("Y")) {
+                restart = true;
+            } else if (type.equalsIgnoreCase("N")) {
+                System.out.println("Goodbye");
+                restart = false;
+            } else {
+                System.out.println("Invalid input. Restarting...");
+                restart = true;
+            }
+        }
+    }
+}
