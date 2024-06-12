@@ -1,0 +1,64 @@
+import random
+
+def deal_card():
+    cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+    card = random.choice(cards)
+    return card
+
+def score(hand):
+    if sum(hand) == 21 and len(hand) == 2:
+        return 0
+    if 11 in hand and sum(hand) > 21:
+        hand.remove(11)
+        hand.append(1)
+    return sum(hand)
+
+def blackjack():
+    player = []
+    dealer = []
+
+    for i in range(2):
+        player.append(deal_card())
+        dealer.append(deal_card())
+
+    game_over = False
+
+    while not game_over:
+        playerscore = score(player)
+        dealerscore = score(dealer)
+
+        print(f"Your cards: {player}, current score: {playerscore}")
+        print(f"Dealer's first card: {dealer[0]}")
+
+        if playerscore == 0 or dealerscore == 0 or playerscore > 21:
+            game_over = True
+        else:
+            should_continue = input("Type 'y' to get another card, 'n' to pass: ")
+            if should_continue == 'y':
+                player.append(deal_card())
+            else:
+                game_over = True
+
+    while playerscore != 0 and dealerscore < 17:
+        dealer.append(deal_card())
+        dealerscore = score(dealer)
+
+    print("Your final hand: {player}, final score: {playerscore}")
+    print("Dealer's final hand: {dealer}, final score: {dealerscore}")
+
+    if playerscore > 21:
+        return "You went over. You lose!"
+    elif dealerscore > 21:
+        return "Dealer went over. You win!"
+    elif playerscore == dealerscore:
+        return "It's a draw!"
+    elif playerscore == 0:
+        return "Blackjack! You win!"
+    elif dealerscore == 0:
+        return "Dealer got a Blackjack. You lose!"
+    elif playerscore > dealerscore:
+        return "You win!"
+    else:
+        return "You lose!"
+
+print(blackjack())
