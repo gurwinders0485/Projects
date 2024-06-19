@@ -22,19 +22,19 @@ public class Calculator {
                 Operator = scnr.next();
             } else if (type.equalsIgnoreCase("Scientific")) {
                 System.out.println("The calculator will operate in scientific mode.");
-                System.out.println("Enter '+' for addition, '-' for subtraction, '*' for multiplication, '/' for division, 'sin' for sin x, 'cos' for cos x, 'tan' for tan x:");
+                System.out.println("Enter '+' for addition, '-' for subtraction, '*' for multiplication, '/' for division, 'sin' for sin x, 'cos' for cos x, 'tan' for tan x, 'log' for log x, 'exp' for exp x:");
                 Operator = scnr.next();
             } else {
                 System.out.println("Invalid calculator mode. Please try again.");
                 continue;
             }
 
-            while (!Operator.equals("+") && !Operator.equals("-") && !Operator.equals("*") && !Operator.equals("/") && !Operator.equals("sin") && !Operator.equals("cos") && !Operator.equals("tan")) {
+            while (!Operator.equals("+") && !Operator.equals("-") && !Operator.equals("*") && !Operator.equals("/") && !Operator.equals("sin") && !Operator.equals("cos") && !Operator.equals("tan") && !Operator.equals("log") && !Operator.equals("exp")) {
                 System.out.println("Invalid operator " + Operator);
                 if (type.equalsIgnoreCase("Standard")) {
                     System.out.println("Enter '+' for addition, '-' for subtraction, '*' for multiplication, '/' for division");
                 } else {
-                    System.out.println("Enter '+' for addition, '-' for subtraction, '*' for multiplication, '/' for division, 'sin' for sin x, 'cos' for cos x, 'tan' for tan x:");
+                    System.out.println("Enter '+' for addition, '-' for subtraction, '*' for multiplication, '/' for division, 'sin' for sin x, 'cos' for cos x, 'tan' for tan x, 'log' for log x, 'exp' for exp x:");
                 }
                 Operator = scnr.next();
             }
@@ -81,6 +81,16 @@ public class Calculator {
                 System.out.println("Enter a number in radians to find the tangent");
                 radians = scnr.nextDouble();
                 result = Math.tan(radians);
+                System.out.println("Result: " + result);
+            } else if (Operator.equals("log")) {
+                System.out.println("Enter a number to find the logarithm");
+                r = scnr.nextDouble();
+                result = Math.log(r);
+                System.out.println("Result: " + result);
+            } else if (Operator.equals("exp")) {
+                System.out.println("Enter a number to find the exponential");
+                r = scnr.nextDouble();
+                result = Math.exp(r);
                 System.out.println("Result: " + result);
             }
 
